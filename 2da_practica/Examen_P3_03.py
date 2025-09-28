@@ -29,6 +29,7 @@ Error: Formato de precio inválido
 Precios válidos ingresados: [100.69]
 Promedio: 100.69
 """
+
 def convertir_precio(texto: str) -> float:
     if texto.strip() == "":
         raise ValueError("El precio no puede estar vacío")
@@ -48,7 +49,25 @@ print("Debido a la carga de datos, actualmente la función solo acepta 3 precios
       "Por favor no intente más\n")
 
 precios = input("Digite los 3 números, separelos por una espacio: ")
-precios_1 = precios.split()
+precios_1 = precios.strip().split()
 if len(precios_1) > 3:
     raise ValueError("No puedes usar la función para más de 3 precios")
+
+lista_numeros = []
+for a in precios_1:
+    b = float(a)
+    lista_numeros.append(b)
+precio_promedio = sum(lista_numeros) / len(lista_numeros)
+
+lista_nueva = []
+for i in range(0,3):
+    precio_convertido = convertir_precio(precios_1[i])
+    lista_nueva.append(precio_convertido)
+
+print("Entrada:")
+for pre in precios_1:
+    print(f"    El precio 1 ingresado: {pre}")
+
+print(f"\nLista con precios convertidos: {lista_nueva}")
+print(f"El precio promedio de los 3 valores ingresados es {precio_promedio}")
 
